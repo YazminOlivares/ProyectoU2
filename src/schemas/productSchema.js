@@ -1,45 +1,59 @@
 const { gql } = require('apollo-server');
 
 const typeDefs = gql`
-    type Product {
-        _id: ID!
-        name: String!
-        description: String!
-        price: Float!         
-        category: [String]!
-        brand: String!
-        qty: Int!              
-        images: [String]!      
-    }
+  enum Category {
+    ELECTRONICS
+    CLOTHING
+    FOOD
+    TOYS
+  }
 
-    type Query {
-        products: [Product]
-    }
+  type Product {
+    _id: ID!
+    name: String!
+    description: String!
+    price: Float!
+    category: Category!
+    brand: String!
+    stock: Int!
+    creationDate: String
+    imgs: [String]
+    facturapiid: String!
+  }
 
-    type Mutation {
-        createProduct(
-            name: String!
-            description: String!
-            price: Float!       
-            category: [String]!
-            brand: String!
-            qty: Int!
-            images: [String]!   
-        ): Product!
-        
-        updateProduct(
-            _id: ID!
-            name: String!
-            description: String!
-            price: Float!
-            category: [String]!
-            brand: String!
-            qty: Int!
-            images: [String]!
-        ): Product!
+  type Query {
+    products: [Product]
+  }
 
-        deleteProduct(_id: ID!): Product!
-    }
+  type Mutation {
+    createProduct(
+      name: String!,
+      description: String,
+      price: Float!,
+      category: Category,
+      brand: String,
+      stock: Int,
+      imgs: [String],
+      facturapiid: String!
+    ): Product
+
+    updateProduct(
+      _id: ID!,
+      name: String,
+      description: String,
+      price: Float,
+      category: Category,
+      brand: String,
+      stock: Int,
+      imgs: [String],
+      facturapiid: String!
+    ): Product
+
+    deleteProduct(
+      facturapiid: String!
+      _id: ID!
+    ): Product
+  }
 `;
 
 module.exports = typeDefs;

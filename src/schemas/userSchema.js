@@ -11,6 +11,8 @@ const typeDefs = gql`
         resDate: String!
         type: String!
         payMethod: [String]!
+        facturapiid: String!
+        rfc: String!
     }
     
     type Query {
@@ -26,7 +28,9 @@ const typeDefs = gql`
             phoneNumber: Int!
             resDate: String!
             type: String!
-            payMethod: [String]!   
+            payMethod: [String]!  
+            facturapiid: String!
+            rfc: String!
         ): User!
         
         updateUser(
@@ -39,9 +43,14 @@ const typeDefs = gql`
             resDate: String!
             type: String!
             payMethod: [String]!
+            facturapiid: String!
+            rfc: String!
         ): User!
 
-        deleteUser(_id: ID!): User!
+        deleteUser(
+            facturapiid: String!
+            _id: ID!
+      ): User!
     }
 `;
 
