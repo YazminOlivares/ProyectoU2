@@ -61,11 +61,28 @@ async function updateUser(user) {
       );
 }
 
+async function createReceipts(recibo) {
+    return await facturapi.receipts.create({
+        folio_number: 1234,
+        payment_form: Facturapi.PaymentForm.DINERO_ELECTRONICO,
+        items: [{
+          quantity: 1,
+          product: {
+            description: 'Ukelele',
+            product_key: '60131324',
+            price: 345.60,
+            sku: 'ABC1234'
+          }
+        }]
+      });
+}
+
 module.exports = { 
     createProduct,
     deleteProduct,
     updateProduct,
     createUser,
     deleteUser,
-    updateUser
+    updateUser,
+    createReceipts
  };

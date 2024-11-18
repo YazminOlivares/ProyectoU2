@@ -1,33 +1,22 @@
 const mongoose = require('mongoose');
 
 const shoppingCarSchema = new mongoose.Schema({
-    user: [
-        {
-            name: { type: String, require: true },
-            email: { type: String, require: true },  
-            facturapiid: { type: String, required: true },
-            rfc: { type: String, required: true }
-        }
-    ],
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'users', required: true },
     product: [
         {
-            name: { type: String, required: true },
-            description: { type: String, required: true },
-            price: { type: Number, required: true },
-            brand: { type: String, required: true },
-            imgs: [String]
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'products', 
+            required: true
         }
     ],
-    total: [
-        {
+    total: {
             subtotal: { type: Number, required: true },
             iva: { type: Number, required: true },
             total: { type: Number, required: true}
-        }
-    ],
-    estatus: { type: String, required: true},
-    createAt: { type: Date, required: true},
-    closed: { type: Date, required: true}
+    },
+    estatus: { type: String, required: true, default: 'Activo'},
+    createAt: { type: Date, required: true, default: Date.now},
+    closed: { type: Date}
 });
 
-module.exports = mongoose.model('ShoppingCar', shoppingCarSchema);
+module.exports = mongoose.model('shoppingcars', shoppingCarSchema);

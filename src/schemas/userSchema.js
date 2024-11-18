@@ -59,7 +59,7 @@ module.exports = typeDefs;
 /*
 {  
   "id": "67297e27bf5e55d0873c4c28",
-  "name": "Yazmin Olivares Actualizado",
+  "name": "Yazmin Olivares",
   "email": "karlaolbe@gmail.com",  
   "password": "password",
   "direction": "Su casa",  
@@ -69,5 +69,46 @@ module.exports = typeDefs;
   "payMethod": [
     "paypal"
   ]
+}
+
+{
+  "user": {
+    "name": ""
+  },
+  "product": null,
+  "total": null,
+  "estatus": null,
+  "createAt": null,
+  "name": null,
+  "email": null,
+  "password": null,
+  "direction": null,
+  "phoneNumber": null,
+  "resDate": null,
+  "type": null,
+  "payMethod": null,
+  "facturapiid": null,
+  "rfc": null
+}
+
+mutation CreateShCar($user: [UserInput!]!, $product: [ProductInput!]!, $total: [TotalInput!]!, $estatus: String!, $createAt: String!) {
+  createShCar(user: $user, product: $product, total: $total, estatus: $estatus, createAt: $createAt) {
+    user {
+      name
+      email
+      facturapiid
+      rfc
+    }
+    product {
+      _id
+    }
+    total {
+      subtotal
+      iva
+      total
+    }
+    estatus
+    createAt
+  }
 }
   */

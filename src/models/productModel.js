@@ -12,4 +12,4 @@ const productSchema = new mongoose.Schema({
   facturapiid: {type: String, required: true}
 });
 
-module.exports = mongoose.model('Product', productSchema);
+module.exports = mongoose.model('products', productSchema);
